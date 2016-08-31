@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DGWebScanner.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="internetTimeout" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5000</Value>
+    </Setting>
+    <Setting Name="firstTimeRun" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="proxyIPSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="proxyPortSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="proxyUsernameSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="proxyPasswordSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="textShadeColorSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">WHITE</Value>
+    </Setting>
+    <Setting Name="primaryColorSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Blue</Value>
+    </Setting>
+    <Setting Name="accentColorSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Orange</Value>
+    </Setting>
+    <Setting Name="version" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0.1.2.4</Value>
+    </Setting>
+    <Setting Name="themeColorSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">LIGHT</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
