@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("N/A");
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("N/A");
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.getVulnerableInfo = new System.ComponentModel.BackgroundWorker();
             this.websiteURL = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.scanWebsite = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -56,6 +56,10 @@
             this.findAdminButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.websiteURLAdmin = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.toolsTab = new System.Windows.Forms.TabPage();
+            this.copyHashButton = new MaterialSkin.Controls.MaterialFlatButton();
+            this.decodeHashStatus = new MaterialSkin.Controls.MaterialLabel();
+            this.decodeHashButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.decodeHashText = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.findAdminPageWorker = new System.ComponentModel.BackgroundWorker();
             this.settingsGroupBox = new System.Windows.Forms.GroupBox();
             this.darkCheckBox = new MaterialSkin.Controls.MaterialCheckBox();
@@ -90,6 +94,7 @@
             this.databaseTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.databaseGridView)).BeginInit();
             this.adminTab.SuspendLayout();
+            this.toolsTab.SuspendLayout();
             this.settingsGroupBox.SuspendLayout();
             this.databaseGridViewMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -282,10 +287,10 @@
             this.databaseInfoTreeView.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.databaseInfoTreeView.Location = new System.Drawing.Point(3, 3);
             this.databaseInfoTreeView.Name = "databaseInfoTreeView";
-            treeNode2.Name = "notAvailable";
-            treeNode2.Text = "N/A";
+            treeNode4.Name = "notAvailable";
+            treeNode4.Text = "N/A";
             this.databaseInfoTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode4});
             this.databaseInfoTreeView.Size = new System.Drawing.Size(236, 288);
             this.databaseInfoTreeView.TabIndex = 30;
             this.databaseInfoTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.databaseInfoTreeView_AfterSelect);
@@ -326,8 +331,8 @@
             this.databaseGridView.Name = "databaseGridView";
             this.databaseGridView.ReadOnly = true;
             this.databaseGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.databaseGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.databaseGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.databaseGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.databaseGridView.Size = new System.Drawing.Size(343, 288);
             this.databaseGridView.TabIndex = 31;
@@ -423,12 +428,73 @@
             // 
             // toolsTab
             // 
+            this.toolsTab.BackColor = System.Drawing.Color.White;
+            this.toolsTab.Controls.Add(this.copyHashButton);
+            this.toolsTab.Controls.Add(this.decodeHashStatus);
+            this.toolsTab.Controls.Add(this.decodeHashButton);
+            this.toolsTab.Controls.Add(this.decodeHashText);
             this.toolsTab.Location = new System.Drawing.Point(4, 27);
             this.toolsTab.Name = "toolsTab";
             this.toolsTab.Size = new System.Drawing.Size(585, 294);
             this.toolsTab.TabIndex = 2;
             this.toolsTab.Text = "Other Tools";
-            this.toolsTab.UseVisualStyleBackColor = true;
+            // 
+            // copyHashButton
+            // 
+            this.copyHashButton.AutoSize = true;
+            this.copyHashButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.copyHashButton.Depth = 0;
+            this.copyHashButton.Location = new System.Drawing.Point(14, 50);
+            this.copyHashButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.copyHashButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.copyHashButton.Name = "copyHashButton";
+            this.copyHashButton.Primary = false;
+            this.copyHashButton.Size = new System.Drawing.Size(48, 36);
+            this.copyHashButton.TabIndex = 38;
+            this.copyHashButton.Text = "Copy";
+            this.copyHashButton.UseVisualStyleBackColor = true;
+            this.copyHashButton.Click += new System.EventHandler(this.copyHashButton_click);
+            // 
+            // decodeHashStatus
+            // 
+            this.decodeHashStatus.AutoSize = true;
+            this.decodeHashStatus.Depth = 0;
+            this.decodeHashStatus.Font = new System.Drawing.Font("Roboto", 11F);
+            this.decodeHashStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.decodeHashStatus.Location = new System.Drawing.Point(69, 59);
+            this.decodeHashStatus.MouseState = MaterialSkin.MouseState.HOVER;
+            this.decodeHashStatus.Name = "decodeHashStatus";
+            this.decodeHashStatus.Size = new System.Drawing.Size(90, 19);
+            this.decodeHashStatus.TabIndex = 37;
+            this.decodeHashStatus.Text = "Hash status";
+            // 
+            // decodeHashButton
+            // 
+            this.decodeHashButton.Depth = 0;
+            this.decodeHashButton.Location = new System.Drawing.Point(441, 20);
+            this.decodeHashButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.decodeHashButton.Name = "decodeHashButton";
+            this.decodeHashButton.Primary = true;
+            this.decodeHashButton.Size = new System.Drawing.Size(129, 23);
+            this.decodeHashButton.TabIndex = 36;
+            this.decodeHashButton.Text = "Decode Hash";
+            this.decodeHashButton.UseVisualStyleBackColor = true;
+            this.decodeHashButton.Click += new System.EventHandler(this.decodeHashButton_Click);
+            // 
+            // decodeHashText
+            // 
+            this.decodeHashText.Depth = 0;
+            this.decodeHashText.Hint = "5f4dcc3b5aa765d61d8327deb882cf99";
+            this.decodeHashText.Location = new System.Drawing.Point(14, 20);
+            this.decodeHashText.MouseState = MaterialSkin.MouseState.HOVER;
+            this.decodeHashText.Name = "decodeHashText";
+            this.decodeHashText.PasswordChar = '\0';
+            this.decodeHashText.SelectedText = "";
+            this.decodeHashText.SelectionLength = 0;
+            this.decodeHashText.SelectionStart = 0;
+            this.decodeHashText.Size = new System.Drawing.Size(421, 23);
+            this.decodeHashText.TabIndex = 35;
+            this.decodeHashText.UseSystemPasswordChar = false;
             // 
             // findAdminPageWorker
             // 
@@ -903,6 +969,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.databaseGridView)).EndInit();
             this.adminTab.ResumeLayout(false);
             this.adminTab.PerformLayout();
+            this.toolsTab.ResumeLayout(false);
+            this.toolsTab.PerformLayout();
             this.settingsGroupBox.ResumeLayout(false);
             this.settingsGroupBox.PerformLayout();
             this.databaseGridViewMenuStrip.ResumeLayout(false);
@@ -967,6 +1035,10 @@
         private MaterialSkin.Controls.MaterialLabel themeColorLabel;
         private MaterialSkin.Controls.MaterialCheckBox darkCheckBox;
         private MaterialSkin.Controls.MaterialCheckBox lightCheckBox;
+        private MaterialSkin.Controls.MaterialSingleLineTextField decodeHashText;
+        private MaterialSkin.Controls.MaterialRaisedButton decodeHashButton;
+        private MaterialSkin.Controls.MaterialLabel decodeHashStatus;
+        private MaterialSkin.Controls.MaterialFlatButton copyHashButton;
     }
 }
 

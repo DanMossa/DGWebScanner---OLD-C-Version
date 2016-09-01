@@ -18,14 +18,14 @@ namespace DGWebScanner
 
         public WebDownload(int timeout)
         {
-            this.Timeout = timeout;
+            Timeout = timeout;
         }
 
         protected override WebRequest GetWebRequest(Uri address)
         {
-            var request = base.GetWebRequest(address);
+            WebRequest request = base.GetWebRequest(address);
             if (request != null) {
-                request.Timeout = this.Timeout;
+                request.Timeout = Timeout;
             }
             return request;
         }

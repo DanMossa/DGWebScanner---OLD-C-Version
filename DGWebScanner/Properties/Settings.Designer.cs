@@ -133,7 +133,7 @@ namespace DGWebScanner.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.1.2.4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2.3.4")]
         public string version {
             get {
                 return ((string)(this["version"]));
