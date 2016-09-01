@@ -1,1 +1,7 @@
 Current Version 0.2.3.4
+Added Hash decoder
+Attempted to change code into OOP design
+Cleaned up random code with ReSharper
+
+Version 0.1.3.4 - 8/29/2016
+No change logs before this point =/
