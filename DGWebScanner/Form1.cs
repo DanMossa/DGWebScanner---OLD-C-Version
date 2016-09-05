@@ -99,12 +99,10 @@ namespace DGWebScanner
                    {
                        statusInfo.Text = "Gathering Information";
                    });
-                    Console.WriteLine("sdfsdfsd");
                     try
                     {
                         Console.WriteLine("sdfsd    " + websiteURL.Text);
                         string originalWebsiteHtml = client.DownloadString(websiteURL.Text);
-                        Console.WriteLine("Success");
                         try
                         {
                             Console.WriteLine(websiteURL.Text + "'");
@@ -310,7 +308,6 @@ namespace DGWebScanner
                                     {
                                         columnNumbers = newColumnNumbers;
                                     }
-                                    Console.WriteLine("HEREEEEE");
                                     string userVersionColumns =
                                         columnNumbers.Replace(
                                             (19970 + Convert.ToInt32(firstVulnerableColumn)).ToString(),
@@ -606,6 +603,10 @@ namespace DGWebScanner
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Invoke((MethodInvoker)delegate
+            {
+                Text = "DGWebScanner | Alpha " + Settings.Default["version"].ToString();
+            });
             ContextMenu databaseGridViewMenuStrip1 = new ContextMenu();
             databaseGridView.ContextMenu = databaseGridViewMenuStrip1;
             websiteURL.Hint = "Website URL";
@@ -1188,27 +1189,26 @@ namespace DGWebScanner
 
         private void checkUpdates_DoWork(object sender, DoWorkEventArgs e)
         {
-            using (WebDownload client = new WebDownload())
+            GitHubPage updater = new GitHubPage
             {
-                Invoke((MethodInvoker)delegate
-               {
-                   Text = "DGWebScanner | Alpha " + Settings.Default["version"].ToString();
-               });
-                string newestVersionNumber =
-                    client.DownloadString("http://raw.githubusercontent.com/Dgameman1/DGWebScanner/master/version.txt");
-                string currentVersionNumber = Settings.Default["version"].ToString();
-                string underscoreVersion = newestVersionNumber.Replace('.', '_');
-                Version newVersion = new Version(newestVersionNumber);
-                Version currentVersion = new Version(currentVersionNumber);
-                int result = newVersion.CompareTo(currentVersion);
-                if (result > 0)
+                MasterGitHubUsername = "Dgameman1",
+                CurrentVersionNumber = Settings.Default["version"].ToString()
+            };
+            GitHubPage.NewVersionNumber = GitHubPage.GetRawGitHubText(updater.MasterGitHubUsername, "version.txt");
+            string underscoreVersion = GitHubPage.NewVersionNumber.Replace('.', '_');
+            Version newVersion = new Version(GitHubPage.NewVersionNumber);
+            Version currentVersion = new Version(updater.CurrentVersionNumber);
+            int result = newVersion.CompareTo(currentVersion);
+            if (result > 0)
+            {
+                //new version is greater than current version
+                using (WebDownload client = new WebDownload())
                 {
-                    //new version is greater than current version
                     string changeLog = client.DownloadString("http://raw.githubusercontent.com/Dgameman1/DGWebScanner/master/Changelog.txt");
                     Regex changeLogMatch = new Regex("Current Version\\s.*?\\n(.*?\\n)+Previous\\sVersion.*?\\n");
                     Match changeLogInfo = changeLogMatch.Match(changeLog);
                     MessageBox.Show("New Changes" + Environment.NewLine + changeLogInfo
-                        , "New Version Found: " + newVersion);
+                                    , "New Version Found: " + newVersion);
                     statusInfo.Invoke((MethodInvoker)delegate
                    {
                        statusInfo.Text = "New Version Available | " + newVersion;
@@ -1221,18 +1221,18 @@ namespace DGWebScanner
                             "DGWebScanner" + underscoreVersion + ".exe");
                         MessageBox.Show("Download Finished. Please open up the new version.");
                     }
-
-                }
-                else if (result < 0)
-                {
-                    //current version is newer than newer version
-                    //IMPOSSIBLE
-                }
-                else
-                {
-                    //Versions are the same
                 }
             }
+            else if (result < 0)
+            {
+                //current version is newer than newer version
+                //IMPOSSIBLE
+            }
+            else
+            {
+                //Versions are the same
+            }
+
         }
 
         private void statusInfo_Click(object sender, EventArgs e)
@@ -1692,7 +1692,7 @@ namespace DGWebScanner
                 string[] splitHashStatus = decodeHashStatus.Text.Split(new[] { "Decoded: " }, StringSplitOptions.None);
                 Clipboard.SetText(splitHashStatus[1]);
             }
-            
+
         }
     }
 }

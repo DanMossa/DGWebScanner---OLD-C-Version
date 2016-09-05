@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DGWebScanner", "DGWebScanner\DGWebScanner.csproj", "{761472ED-9BE9-49BF-A398-C19C857056DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DGWebScanner.Library.Tests", "DGWebScanner.Library.Test\DGWebScanner.Library.Tests.csproj", "{4CAB1C64-9858-426C-87B8-E5623A041B8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{761472ED-9BE9-49BF-A398-C19C857056DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{761472ED-9BE9-49BF-A398-C19C857056DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{761472ED-9BE9-49BF-A398-C19C857056DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CAB1C64-9858-426C-87B8-E5623A041B8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CAB1C64-9858-426C-87B8-E5623A041B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CAB1C64-9858-426C-87B8-E5623A041B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CAB1C64-9858-426C-87B8-E5623A041B8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
