@@ -576,12 +576,12 @@ namespace DGWebScanner
             {
                 statusInfo.Invoke((MethodInvoker)delegate
                {
-                   statusInfo.Text = "Process was canceled";
+                   statusInfo.Text = "Process was canceled.";
                });
             }
             else if (e.Error != null)
             {
-                MessageBox.Show("There was an error running the process. The thread aborted");
+                MessageBox.Show("There was an error running the process. The thread aborted.");
             }
             else
             {
@@ -589,7 +589,7 @@ namespace DGWebScanner
                 {
                     statusInfo.Invoke((MethodInvoker)delegate
                    {
-                       statusInfo.Text = "Finished. Click a column to view it's contents";
+                       statusInfo.Text = "Finished. Click a column to view it's contents.";
                    });
                 }
             }
@@ -1076,16 +1076,16 @@ namespace DGWebScanner
             {
                 statusInfo.Invoke((MethodInvoker)delegate
                {
-                   statusInfo.Text = "Process was canceled";
+                   statusInfo.Text = "Process was canceled.";
                });
             }
             else if (e.Error != null)
             {
-                MessageBox.Show("There was an error running the process. The thread aborted");
+                MessageBox.Show("There was an error running the process. The thread aborted.");
             }
             else
             {
-                MessageBox.Show("Process was completed");
+                MessageBox.Show("Process was completed!");
             }
             adminURLListBox.SelectionMode = SelectionMode.None;
             findAdminButton.Text = "Find Admin Page";
