@@ -1193,7 +1193,7 @@ namespace DGWebScanner
             {
                 MasterGitHubUsername = "Dgameman1",
                 CurrentVersionNumber = Settings.Default["version"].ToString()
-            };
+        };
             GitHubPage.NewVersionNumber = GitHubPage.GetRawGitHubText(updater.MasterGitHubUsername, "version.txt");
             string underscoreVersion = GitHubPage.NewVersionNumber.Replace('.', '_');
             Version newVersion = new Version(GitHubPage.NewVersionNumber);
