@@ -30,7 +30,7 @@
       <Value Profile="(Default)">Orange</Value>
     </Setting>
     <Setting Name="version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0.2.3.4</Value>
+      <Value Profile="(Default)">0.2.5.4</Value>
     </Setting>
     <Setting Name="themeColorSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)">LIGHT</Value>
