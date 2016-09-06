@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("N/A");
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("N/A");
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.getVulnerableInfo = new System.ComponentModel.BackgroundWorker();
             this.websiteURL = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.scanWebsite = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -90,6 +90,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.databaseGridViewMenuStrip = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.decodeHashWorker = new System.ComponentModel.BackgroundWorker();
             this.tabView.SuspendLayout();
             this.databaseTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.databaseGridView)).BeginInit();
@@ -287,10 +288,10 @@
             this.databaseInfoTreeView.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.databaseInfoTreeView.Location = new System.Drawing.Point(3, 3);
             this.databaseInfoTreeView.Name = "databaseInfoTreeView";
-            treeNode4.Name = "notAvailable";
-            treeNode4.Text = "N/A";
+            treeNode2.Name = "notAvailable";
+            treeNode2.Text = "N/A";
             this.databaseInfoTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode2});
             this.databaseInfoTreeView.Size = new System.Drawing.Size(236, 288);
             this.databaseInfoTreeView.TabIndex = 30;
             this.databaseInfoTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.databaseInfoTreeView_AfterSelect);
@@ -331,8 +332,8 @@
             this.databaseGridView.Name = "databaseGridView";
             this.databaseGridView.ReadOnly = true;
             this.databaseGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.databaseGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.databaseGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.databaseGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.databaseGridView.Size = new System.Drawing.Size(343, 288);
             this.databaseGridView.TabIndex = 31;
@@ -933,6 +934,11 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
+            // decodeHashWorker
+            // 
+            this.decodeHashWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.decodeHashWorker_DoWork);
+            this.decodeHashWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.decodeHashWorker_RunWorkerCompleted);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -1039,6 +1045,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton decodeHashButton;
         private MaterialSkin.Controls.MaterialLabel decodeHashStatus;
         private MaterialSkin.Controls.MaterialFlatButton copyHashButton;
+        private System.ComponentModel.BackgroundWorker decodeHashWorker;
     }
 }
 

