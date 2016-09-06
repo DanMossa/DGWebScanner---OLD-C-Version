@@ -1,4 +1,4 @@
-Current Version 0.2.5.4
+Current Version 0.2.5.5
 
 Bug: Fixed the counter for the Admin Page Scanner
 Bug: Fixed Status text color going black when theme color changed

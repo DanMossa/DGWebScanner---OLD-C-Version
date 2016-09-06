@@ -1651,9 +1651,8 @@ namespace DGWebScanner
 
         private void decodeHashButton_Click(object sender, EventArgs e)
         {
-            Hash hash = new Hash();
             //Fix later
-            if (!hash.ValidateHash(decodeHashText.Text))
+            if (!Hash.ValidateHash(decodeHashText.Text))
             {
                 decodeHashStatus.Text = "Invalid Hash";
             }

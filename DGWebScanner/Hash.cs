@@ -17,13 +17,13 @@ namespace DGWebScanner
 
         }
 
-        public bool ValidateHash(string inputHash)
+        public static bool ValidateHash(string inputHash)
         {
             //MD5 = 32
             //SHA1 = 40
             //SHA256 = 64
             Debug.WriteLine(inputHash);
-            if (inputHash.Length%4 == 0)
+            if (inputHash.Length%4 == 0 && inputHash.Length != 0)
             {
                 return true;
             }
