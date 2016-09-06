@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("N/A");
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("N/A");
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.getVulnerableInfo = new System.ComponentModel.BackgroundWorker();
             this.websiteURL = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.scanWebsite = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -288,10 +288,10 @@
             this.databaseInfoTreeView.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.databaseInfoTreeView.Location = new System.Drawing.Point(3, 3);
             this.databaseInfoTreeView.Name = "databaseInfoTreeView";
-            treeNode2.Name = "notAvailable";
-            treeNode2.Text = "N/A";
+            treeNode1.Name = "notAvailable";
+            treeNode1.Text = "N/A";
             this.databaseInfoTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.databaseInfoTreeView.Size = new System.Drawing.Size(236, 288);
             this.databaseInfoTreeView.TabIndex = 30;
             this.databaseInfoTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.databaseInfoTreeView_AfterSelect);
@@ -332,8 +332,8 @@
             this.databaseGridView.Name = "databaseGridView";
             this.databaseGridView.ReadOnly = true;
             this.databaseGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.databaseGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.databaseGridView.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.databaseGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.databaseGridView.Size = new System.Drawing.Size(343, 288);
             this.databaseGridView.TabIndex = 31;
@@ -359,6 +359,7 @@
             // maybeAdminURLListBox
             // 
             this.maybeAdminURLListBox.FormattingEnabled = true;
+            this.maybeAdminURLListBox.HorizontalScrollbar = true;
             this.maybeAdminURLListBox.ItemHeight = 18;
             this.maybeAdminURLListBox.Location = new System.Drawing.Point(243, 53);
             this.maybeAdminURLListBox.Name = "maybeAdminURLListBox";
@@ -366,6 +367,7 @@
             this.maybeAdminURLListBox.TabIndex = 38;
             this.maybeAdminURLListBox.Click += new System.EventHandler(this.maybeAdminURLListBox_Click);
             this.maybeAdminURLListBox.DoubleClick += new System.EventHandler(this.maybeAdminURLListBox_DoubleClick);
+            this.maybeAdminURLListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.maybeAdminURLListBox_MouseDown);
             // 
             // adminURLListBox
             // 

