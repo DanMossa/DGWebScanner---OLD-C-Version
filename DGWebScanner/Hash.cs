@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace DGWebScanner
 {
     public class Hash
     {
-        public Hash()
-        {
-
-        }
 
         public static bool ValidateHash(string inputHash)
         {
@@ -23,7 +13,7 @@ namespace DGWebScanner
             //SHA1 = 40
             //SHA256 = 64
             Debug.WriteLine(inputHash);
-            if (inputHash.Length%4 == 0 && inputHash.Length != 0)
+            if (inputHash.Length % 4 == 0 && inputHash.Length != 0)
             {
                 return true;
             }
@@ -42,34 +32,24 @@ namespace DGWebScanner
 
         public static string GetHashKillerDecodedHash(string inputHashUrl, string inputOriginalHash)
         {
-            using (WebClient client = new WebClient())
+            string hashKillerHtml = HelpfulFunctions.GetHtml(inputHashUrl);
+            Regex hashMatch = new Regex("^" + inputOriginalHash + "\\s(.*?)$", RegexOptions.Multiline);
+            Match decodedHash = hashMatch.Match(hashKillerHtml);
+            if (decodedHash.Groups[1].ToString() == string.Empty)
             {
-                client.Headers.Add("user-agent",
-                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-                string hashKillerHtml = client.DownloadString(inputHashUrl);
-                Regex hashMatch = new Regex("^" + inputOriginalHash + "\\s(.*?)$", RegexOptions.Multiline);
-                Match decodedHash = hashMatch.Match(hashKillerHtml);
-                if (decodedHash.Groups[1].ToString() == string.Empty)
-                {
-                    return "0";
-                }
-                return decodedHash.Groups[1].ToString();
+                return "0";
             }
+            return decodedHash.Groups[1].ToString();
         }
 
         public static string GetNitrxgenDecodedHash(string inputOriginalHash)
         {
-            using (WebClient client = new WebClient())
+            string hashKillerHtml = HelpfulFunctions.GetHtml("http://www.nitrxgen.net/md5db/" + inputOriginalHash);
+            if (hashKillerHtml.Length == 0 || hashKillerHtml.Contains("$HEX["))
             {
-                client.Headers.Add("user-agent",
-                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-                string hashKillerHtml = client.DownloadString("http://www.nitrxgen.net/md5db/" + inputOriginalHash);
-                if (hashKillerHtml.Length == 0 || hashKillerHtml.Contains("$HEX["))
-                {
-                    return "0";
-                }
-                return hashKillerHtml;
+                return "0";
             }
+            return hashKillerHtml;
         }
     }
 

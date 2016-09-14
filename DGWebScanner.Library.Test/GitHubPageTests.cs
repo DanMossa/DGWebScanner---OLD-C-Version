@@ -1,11 +1,11 @@
-﻿using System.Net;
-using DGWebScanner.Properties;
+﻿using DGWebScanner.Properties;
 using NUnit.Framework;
 
 namespace DGWebScanner.Library.Test
 {
     [TestFixture]
-    class GitHubPageTest
+    [Parallelizable]
+    internal class GitHubPageTests
     {
         [Test]
         public void ReturnVersionWith4DecimalPoints()

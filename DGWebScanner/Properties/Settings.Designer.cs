@@ -25,7 +25,7 @@ namespace DGWebScanner.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
         public string internetTimeout {
             get {
                 return ((string)(this["internetTimeout"]));
@@ -133,7 +133,7 @@ namespace DGWebScanner.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.2.5.5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2.6.5")]
         public string version {
             get {
                 return ((string)(this["version"]));

@@ -1,5 +1,10 @@
 Current Version 0.2.5.5
+Bug: The program couldn't always find the updated version number so I just threw a try/catch in there. I should probably fix that eventually.
+Enhancement: Finds vulnerable columns a whole lot faster.
+Enhancement: Lots and lots of refactoring.
 
+
+Previous Version 0.2.5.5
 Bug: Fixed the counter for the Admin Page Scanner
 Bug: Fixed Status text color going black when theme color changed
 Enhancement: Added another decoding database
