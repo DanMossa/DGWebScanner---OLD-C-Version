@@ -14,6 +14,8 @@ TBA
 
 * C#
 * .NET
+* ReSharper
+* NUnit
 * Visual Studio 2015
 
 ## Versioning
