@@ -20,11 +20,11 @@ TBA
 
 ## Versioning
 
-[I'm using a super half-assed versioning system](https://github.com/Dgameman1/DGWebScanner/blob/master/version.txt). 
+[I'm using a super half-assed versioning system](https://github.com/DanMossa/DGWebScanner---OLD-C-Version/blob/master/version.txt). 
 
 ## Authors
 
-* **Daniel Mossaband** - *Initial work* - [DGWebScanner](https://github.com/Dgameman1/DGWebScanner)
+* **Daniel Mossaband** - *Initial work* - [DGWebScanner](https://github.com/DanMossa/DGWebScanner---OLD-C-Version)
 
 ## License
 
