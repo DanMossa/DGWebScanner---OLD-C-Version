@@ -4,7 +4,7 @@ DGWebScanner is a C# .NET application that scans for SQL vulnerabilites on websi
 
 ## Getting Started
 
-If your goal is to download the standalone exe without having to compile the software, feel free to download the [standalone exe here](https://github.com/Dgameman1/DGWebScanner/blob/master/DGWebScanner.exe)
+If your goal is to download the standalone exe without having to compile the software, feel free to download the [standalone exe here](https://github.com/danmossa/DGWebScanner---OLD-C-Version/blob/master/DGWebScanner.exe)
 
 ### Prerequisities
 
